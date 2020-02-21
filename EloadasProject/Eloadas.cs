@@ -41,15 +41,48 @@ namespace EloadasProject
         }
         int SzabadHelyekSzama()
         {
-            return;
+            int db = 0;
+            for (int i = 0; i < foglalasok.Length - 1; i++)
+            {
+                for (int j = 0; j < foglalasok.Length - 1; j++)
+                {
+                    if (!Lefoglal())
+                    {
+                        db++;
+                    }
+                }
+            }
+            
+            return db;
         }
         bool Teli()
         {
-            return;
+            if (SzabadHelyekSzama() == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         bool Foglalt(int sorSzam, int helySzam)
         {
-            return;
+            if (sorSzam > foglalasok.Length || helySzam > foglalasok.Length)
+            {
+                throw new ArgumentException();
+            }
+            else
+            {
+                if (foglalasok[sorSzam, helySzam] == false)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
         }
     }
 }
