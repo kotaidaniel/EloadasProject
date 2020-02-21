@@ -8,7 +8,7 @@ namespace EloadasProject
 {
     public class Eloadas
     {
-        bool[,] foglalasok;
+        public bool[,] foglalasok;
         public Eloadas(int sorokSzama, int helyekSzama)
         {
             foglalasok = new bool[sorokSzama, helyekSzama];
@@ -24,11 +24,11 @@ namespace EloadasProject
                 throw new ArgumentException();
             }
         }
-        bool Lefoglal()
+        public bool Lefoglal()
         {  
-            for (int i = 0; i < foglalasok.Length-1; i++)
+            for (int i = 0; i < foglalasok.GetLength(0); i++)
             {
-                for (int j = 0; j < foglalasok.Length-1; j++)
+                for (int j = 0; j < foglalasok.GetLength(1); j++)
                 {
                     if (foglalasok[i, j] == false)
                     {
@@ -39,14 +39,14 @@ namespace EloadasProject
             }
             return false;
         }
-        int SzabadHelyekSzama()
+        public int SzabadHelyekSzama()
         {
             int db = 0;
-            for (int i = 0; i < foglalasok.Length - 1; i++)
+            for (int i = 0; i < foglalasok.GetLength(0); i++)
             {
-                for (int j = 0; j < foglalasok.Length - 1; j++)
+                for (int j = 0; j < foglalasok.GetLength(1); j++)
                 {
-                    if (!Lefoglal())
+                    if (foglalasok[i,j] == false)
                     {
                         db++;
                     }
@@ -55,7 +55,7 @@ namespace EloadasProject
             
             return db;
         }
-        bool Teli()
+        public bool Teli()
         {
             if (SzabadHelyekSzama() == 0)
             {
@@ -66,9 +66,9 @@ namespace EloadasProject
                 return false;
             }
         }
-        bool Foglalt(int sorSzam, int helySzam)
+        public bool Foglalt(int sorSzam, int helySzam)
         {
-            if (sorSzam > foglalasok.Length || helySzam > foglalasok.Length)
+            if (sorSzam > foglalasok.GetLength(0) || helySzam > foglalasok.GetLength(1))
             {
                 throw new ArgumentException();
             }
