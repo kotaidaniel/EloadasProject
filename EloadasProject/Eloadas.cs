@@ -11,6 +11,10 @@ namespace EloadasProject
         public bool[,] foglalasok;
         public Eloadas(int sorokSzama, int helyekSzama)
         {
+            if (sorokSzama <= 0 || helyekSzama <= 0)
+            {
+                throw new ArgumentException();
+            }
             foglalasok = new bool[sorokSzama, helyekSzama];
             for (int i = 0; i < sorokSzama; i++)
             {
@@ -19,13 +23,10 @@ namespace EloadasProject
                     foglalasok[i, j] = false;
                 }
             }
-            if (sorokSzama <= 0 || helyekSzama <= 0)
-            {
-                throw new ArgumentException();
-            }
+            
         }
         public bool Lefoglal()
-        {  
+        {
             for (int i = 0; i < foglalasok.GetLength(0); i++)
             {
                 for (int j = 0; j < foglalasok.GetLength(1); j++)
